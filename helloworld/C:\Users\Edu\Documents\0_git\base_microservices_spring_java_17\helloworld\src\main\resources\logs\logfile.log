@@ -1,0 +1,2 @@
+2025-02-14T22:00:51.878-0300, ERROR, ErrorHandler.java [handleAllExceptions], http-nio-3002-exec-1, Index 1 out of bounds for length 1
+2025-02-14T22:16:54.481-0300, ERROR, ErrorHandler.java [handleAllExceptions], http-nio-3002-exec-8, Index 1 out of bounds for length 1
