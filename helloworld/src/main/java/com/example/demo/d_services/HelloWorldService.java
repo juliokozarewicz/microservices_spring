@@ -1,12 +1,9 @@
 package com.example.demo.d_services;
 
-import com.example.demo.f_utils.ErrorHandler;
-import jdk.jfr.Event;
+import com.example.demo.f_utils.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 // locale
 import org.springframework.context.MessageSource;
@@ -19,7 +16,7 @@ public class HelloWorldService {
     @Autowired
     private MessageSource messageSource;
 
-    public Map<String, Object> execute(
+    public StandardResponse execute(
         String message
     ) {
 
@@ -27,16 +24,15 @@ public class HelloWorldService {
         Locale locale = LocaleContextHolder.getLocale();
 
         // response (json)
-        Map<String, Object> response = new LinkedHashMap<>();
-        response.put("statusCode", 200);
-        response.put(
-            "statusMessage",
-            messageSource.getMessage(
-                "get_data_success", null, locale
+        return new StandardResponse.Builder()
+            .statusCode(200)
+            .statusMessage(
+                messageSource.getMessage(
+            "get_data_success", null, locale
+                )
             )
-        );
-        response.put("message", message);
-        return response;
+            .message(message)
+            .build();
 
     }
 
