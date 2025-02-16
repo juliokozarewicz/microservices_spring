@@ -14,9 +14,9 @@ public class StandardResponse {
                 this.statusCode = builder.statusCode;
                 this.statusMessage = builder.statusMessage;
                 this.field = builder.field.isEmpty() ? null :
-                        builder.field;
+                    builder.field;
                 this.message = builder.message.isEmpty() ? null :
-                        builder.message;
+                    builder.message;
         }
 
         public int getStatusCode() {

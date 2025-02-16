@@ -45,7 +45,9 @@ class helloWorldController {
             Map<String, Object> response = new LinkedHashMap<>();
             response.put("errorCode", 400);
             bindingResult.getAllErrors().forEach(error -> {
-                String field = ((org.springframework.validation.FieldError) error).getField();
+                String field = (
+                    (org.springframework.validation.FieldError) error
+                ).getField();
                 String messageError = error.getDefaultMessage();
                 response.put("field", field);
                 response.put("message", messageError);
