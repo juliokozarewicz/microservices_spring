@@ -30,7 +30,7 @@ public class ErrorHandler {
     private MessageSource messageSource;
 
     @ExceptionHandler(Exception.class)
-    public StandardResponse handleAllExceptions(
+    public ResponseEntity handleAllExceptions(
             Exception error
     ) {
 
@@ -61,12 +61,16 @@ public class ErrorHandler {
                 errorField = (String) errorMap.get("field");
             }
 
-            return new StandardResponse.Builder()
+            StandardResponse response = new StandardResponse.Builder()
                 .statusCode(Integer.parseInt(errorCode))
                 .statusMessage("error")
                 .field(errorField)
                 .message(errorMessageDetail)
                 .build();
+
+            return ResponseEntity
+            .status(response.getStatusCode())
+            .body(response);
 
         } catch (Exception e) {
 
@@ -76,7 +80,7 @@ public class ErrorHandler {
             // logs
             logger.error(e.getMessage());
 
-            return new StandardResponse.Builder()
+            StandardResponse response = new StandardResponse.Builder()
                 .statusCode(500)
                 .statusMessage("error")
                 .message(
@@ -85,6 +89,10 @@ public class ErrorHandler {
                     )
                 )
                 .build();
+
+            return ResponseEntity
+                .status(response.getStatusCode())
+                .body(response);
         }
 
     }

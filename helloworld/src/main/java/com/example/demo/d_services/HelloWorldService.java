@@ -3,6 +3,8 @@ package com.example.demo.d_services;
 import com.example.demo.f_utils.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 // locale
@@ -16,7 +18,7 @@ public class HelloWorldService {
     @Autowired
     private MessageSource messageSource;
 
-    public StandardResponse execute(
+    public ResponseEntity execute(
         String message
     ) {
 
@@ -24,8 +26,8 @@ public class HelloWorldService {
         Locale locale = LocaleContextHolder.getLocale();
 
         // response (json)
-        return new StandardResponse.Builder()
-            .statusCode(209)
+        StandardResponse response = new StandardResponse.Builder()
+            .statusCode(200)
             .statusMessage(
                 messageSource.getMessage(
             "get_data_success", null, locale
@@ -33,6 +35,10 @@ public class HelloWorldService {
             )
             .message(message)
             .build();
+
+        return ResponseEntity
+            .status(response.getStatusCode())
+            .body(response);
 
     }
 

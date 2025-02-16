@@ -6,6 +6,7 @@ import com.example.demo.d_services.HelloWorldService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.context.MessageSource;
@@ -22,7 +23,7 @@ class helloWorldController {
     private HelloWorldService helloWorldService;
 
     @GetMapping("${BASE_URL_HELLOWORLD:default}/helloworld")
-    public StandardResponse handle(
+    public ResponseEntity handle(
 
         // validation errors
         @Valid HelloWorldValidation helloWorldValidation,
