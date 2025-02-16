@@ -16,17 +16,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping()
-class HelloWorldController {
+class helloWorldController {
 
     @Autowired
     private HelloWorldService helloWorldService;
-
-    // language
-    private final MessageSource messageSource;
-
-    public HelloWorldController(MessageSource messageSource) {
-        this.messageSource = messageSource;
-    }
 
     @GetMapping("${BASE_URL_HELLOWORLD:default}/helloworld")
     public StandardResponse handle(

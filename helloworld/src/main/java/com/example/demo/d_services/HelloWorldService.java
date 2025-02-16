@@ -25,7 +25,7 @@ public class HelloWorldService {
 
         // response (json)
         return new StandardResponse.Builder()
-            .statusCode(200)
+            .statusCode(209)
             .statusMessage(
                 messageSource.getMessage(
             "get_data_success", null, locale
