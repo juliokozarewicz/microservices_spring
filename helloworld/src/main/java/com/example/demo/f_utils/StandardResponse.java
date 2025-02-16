@@ -7,13 +7,16 @@ public class StandardResponse {
 
         private int statusCode;
         private String statusMessage;
+        private String field;
         private String message;
 
         private StandardResponse(Builder builder) {
                 this.statusCode = builder.statusCode;
                 this.statusMessage = builder.statusMessage;
+                this.field = builder.field.isEmpty() ? null :
+                        builder.field;
                 this.message = builder.message.isEmpty() ? null :
-                               builder.message;
+                        builder.message;
         }
 
         public int getStatusCode() {
@@ -24,6 +27,10 @@ public class StandardResponse {
                 return statusMessage;
         }
 
+        public String getField() {
+                return field;
+        }
+
         public String getMessage() {
                 return message;
         }
@@ -32,6 +39,7 @@ public class StandardResponse {
 
                 private int statusCode;
                 private String statusMessage;
+                private String field = "";
                 private String message = "";
 
                 public Builder statusCode(int statusCode) {
@@ -41,6 +49,11 @@ public class StandardResponse {
 
                 public Builder statusMessage(String statusMessage) {
                         this.statusMessage = statusMessage;
+                        return this;
+                }
+
+                public Builder field(String field) {
+                        this.field = field;
                         return this;
                 }
 

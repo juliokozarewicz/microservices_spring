@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
 public class ErrorHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(
-        ErrorHandler.class
+            ErrorHandler.class
     );
 
     // locale
@@ -30,8 +30,8 @@ public class ErrorHandler {
     private MessageSource messageSource;
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<Object> handleAllExceptions(
-        Exception error
+    public StandardResponse handleAllExceptions(
+            Exception error
     ) {
 
         try {
@@ -55,41 +55,36 @@ public class ErrorHandler {
             String errorCode = (String) errorMap.get("errorCode");
             String errorMessageDetail = (String) errorMap.get("message");
 
-            Map<String, Object> errorResponse = new LinkedHashMap<>();
-            errorResponse.put("status", "error");
-            errorResponse.put("statusCode", Integer.parseInt(errorCode));
-            // field error
+            // field error (form)
+            String errorField = "";
             if  (errorMap.get("field") != null) {
-                String errorField = (String) errorMap.get("field");
-                errorResponse.put("field", errorField);
+                errorField = (String) errorMap.get("field");
             }
-            errorResponse.put("message", errorMessageDetail);
 
-            return ResponseEntity
-            .status(Integer.parseInt(errorCode))
-            .body(errorResponse);
+            return new StandardResponse.Builder()
+                .statusCode(Integer.parseInt(errorCode))
+                .statusMessage("error")
+                .field(errorField)
+                .message(errorMessageDetail)
+                .build();
 
         } catch (Exception e) {
 
             // locale
             Locale locale = LocaleContextHolder.getLocale();
 
-            Map<String, Object> errorResponse = new LinkedHashMap<>();
-            errorResponse.put("status", "error");
-            errorResponse.put("statusCode", 500);
-            errorResponse.put(
-                "message",
-                messageSource.getMessage(
-                    "server_error", null, locale
-                )
-            );
-
             // logs
             logger.error(e.getMessage());
 
-            return ResponseEntity
-            .status(500)
-            .body(errorResponse);
+            return new StandardResponse.Builder()
+                .statusCode(500)
+                .statusMessage("error")
+                .message(
+                    messageSource.getMessage(
+                    "server_error", null, locale
+                    )
+                )
+                .build();
         }
 
     }
