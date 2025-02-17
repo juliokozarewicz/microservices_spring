@@ -1,9 +1,8 @@
 package com.example.demo.d_services;
 
-import com.example.demo.f_utils.StandardResponse;
+import com.example.demo.utils.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

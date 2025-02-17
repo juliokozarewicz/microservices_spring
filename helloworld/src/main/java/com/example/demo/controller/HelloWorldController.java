@@ -1,7 +1,7 @@
-package com.example.demo.e_controller;
+package com.example.demo.controller;
 
-import com.example.demo.c_validation.DocumentationValidation;
-import com.example.demo.d_services.DocumentationService;
+import com.example.demo.c_validation.HelloWorldValidation;
+import com.example.demo.d_services.HelloWorldService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -15,16 +15,16 @@ import java.util.Map;
 
 @RestController
 @RequestMapping()
-class DocumentationController {
+class HelloWorldController {
 
     @Autowired
-    private DocumentationService documentationService;
+    private HelloWorldService helloWorldService;
 
     @GetMapping("${BASE_URL_HELLOWORLD:default}/helloworld")
     public ResponseEntity handle(
 
         // validation errors
-        @Valid DocumentationValidation documentationValidation,
+        @Valid HelloWorldValidation helloWorldValidation,
         BindingResult bindingResult,
 
         @RequestParam(
@@ -54,7 +54,7 @@ class DocumentationController {
             throw new RuntimeException(response.toString());
         }
 
-        return documentationService.execute(message);
+        return helloWorldService.execute(message);
 
     }
 

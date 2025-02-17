@@ -1,12 +1,11 @@
-package com.example.demo.f_utils;
+package com.example.demo.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import java.util.Arrays;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -78,7 +77,7 @@ public class ErrorHandler {
             Locale locale = LocaleContextHolder.getLocale();
 
             // logs
-            logger.error(e.getMessage());
+            logger.error(error.toString());
 
             StandardResponse response = new StandardResponse.Builder()
                 .statusCode(500)

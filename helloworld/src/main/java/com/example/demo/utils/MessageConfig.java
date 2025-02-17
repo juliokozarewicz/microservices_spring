@@ -1,4 +1,4 @@
-package com.example.demo.f_utils;
+package com.example.demo.utils;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
