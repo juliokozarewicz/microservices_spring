@@ -1,7 +1,6 @@
 package com.example.demo.e_controller;
 
 import com.example.demo.c_validation.HelloWorldValidation;
-import com.example.demo.f_utils.StandardResponse;
 import com.example.demo.d_services.HelloWorldService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.context.MessageSource;
 
 import java.util.LinkedHashMap;
 import java.util.Locale;
@@ -17,7 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping()
-class helloWorldController {
+class HelloWorldController {
 
     @Autowired
     private HelloWorldService helloWorldService;
