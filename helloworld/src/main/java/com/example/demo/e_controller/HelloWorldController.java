@@ -1,16 +1,17 @@
-package com.example.demo.controller;
+package com.example.demo.e_controller;
 
 import com.example.demo.c_validation.HelloWorldValidation;
-import com.example.demo.d_services.HelloWorldService;
+import com.example.demo.d_service.HelloWorldService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.LinkedHashMap;
-import java.util.Locale;
 import java.util.Map;
 
 @RestController
@@ -32,9 +33,6 @@ class HelloWorldController {
         ) String message
 
     ) {
-
-        // get language
-        Locale locale = LocaleContextHolder.getLocale();
 
         // return validation errors
         if (bindingResult.hasErrors()) {

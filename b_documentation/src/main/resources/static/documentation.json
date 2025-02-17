@@ -40,13 +40,13 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "success"
-                    },
-                    "code": {
+                    "statusCode": {
                       "type": "integer",
                       "example": 200
+                    },
+                    "statusMessage": {
+                      "type": "string",
+                      "example": "success"
                     },
                     "message": {
                       "type": "string",

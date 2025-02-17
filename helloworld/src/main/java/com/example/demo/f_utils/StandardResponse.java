@@ -1,6 +1,9 @@
-package com.example.demo.utils;
+package com.example.demo.f_utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class StandardResponse {
@@ -9,6 +12,7 @@ public class StandardResponse {
         private String statusMessage;
         private String field;
         private String message;
+        private Map<String, String> links;
 
         private StandardResponse(Builder builder) {
                 this.statusCode = builder.statusCode;
@@ -17,6 +21,7 @@ public class StandardResponse {
                     builder.field;
                 this.message = builder.message.isEmpty() ? null :
                     builder.message;
+                this.links = builder.links.isEmpty() ? null : builder.links;
         }
 
         public int getStatusCode() {
@@ -35,12 +40,17 @@ public class StandardResponse {
                 return message;
         }
 
+        public Map<String, String> getLinks() {
+                return links;
+        }
+
         public static class Builder {
 
                 private int statusCode;
                 private String statusMessage;
                 private String field = "";
                 private String message = "";
+                private Map<String, String> links = new HashMap<>();
 
                 public Builder statusCode(int statusCode) {
                         this.statusCode = statusCode;
@@ -59,6 +69,11 @@ public class StandardResponse {
 
                 public Builder message(String message) {
                         this.message = message;
+                        return this;
+                }
+
+                public Builder links(Map<String, String> links) {
+                        this.links = links;
                         return this;
                 }
 
