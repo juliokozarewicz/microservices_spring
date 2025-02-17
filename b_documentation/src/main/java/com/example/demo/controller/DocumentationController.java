@@ -32,6 +32,12 @@ class DocumentationController {
             "<title>Swagger UI</title>\n" +
             "<script src='https://cdn.jsdelivr.net/npm/swagger-ui-dist@3.52.5/swagger-ui-bundle.js'></script>\n" +
             "<link rel='stylesheet' type='text/css' href='https://cdn.jsdelivr.net/npm/swagger-ui-dist@3.52.5/swagger-ui.css' />\n" +
+            "<style>\n" +
+            "  #swagger-ui {\n" +
+            "    max-width: 80%;\n" +
+            "    margin: 0 auto;\n" +
+            "  }\n" +
+            "</style>\n" +
             "</head>\n" +
             "<body>\n" +
             "<div id='swagger-ui'></div>\n" +
