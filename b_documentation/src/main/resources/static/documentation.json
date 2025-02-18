@@ -1,0 +1,73 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "*** API SERVICE NAME ***",
+    "version": "1.0",
+    "description": "*** API SERVICE DESCRIPTION ***"
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/helloworld/helloworld": {
+      "get": {
+        "summary": "Get hello world message",
+        "description": "Retrieves a hello world message. You can optionally provide a custom message via query parameter.",
+        "tags": ["HELLO WORLD"],
+        "parameters": [
+          {
+            "name": "message",
+            "in": "query",
+            "required": false,
+            "description": "Custom message to be returned. Defaults to 'Hello World!!!' if not provided.",
+            "schema": {
+              "type": "string",
+              "example": "Hello from the API!"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with hello world message.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "statusMessage": {
+                      "type": "string",
+                      "example": "success"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Hello World!!!"
+                    },
+                    "links": {
+                      "type": "object",
+                      "properties": {
+                        "self": {
+                          "type": "string",
+                          "example": "/helloworld/helloworld"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
