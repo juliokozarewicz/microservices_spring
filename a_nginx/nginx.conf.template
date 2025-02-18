@@ -108,13 +108,13 @@ http {
     # DOCUMENTATION
     # =================================================================
     # [ DOCUMENTATION - Swagger ]
-    location /documentation/swagger {
-      proxy_pass http://$PRIVATE_DOMAIN:$DOCUMENTATION_PORT;
-      proxy_set_header Host host;
-      proxy_set_header X-Real-IP remot1e_addr;
-      proxy_set_header X-Forwarded-For proxy_add_x_forwarded_for;
-      proxy_set_header X-Forwarded-Proto scheme;
-    }
+        location /documentation/swagger {
+          proxy_pass http://$PRIVATE_DOMAIN:$DOCUMENTATION_PORT;
+          proxy_set_header Host host;
+          proxy_set_header X-Real-IP remot1e_addr;
+          proxy_set_header X-Forwarded-For proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto scheme;
+        }
 
     # [ DOCUMENTATION - JSON ]
         location /documentation/json {
@@ -124,6 +124,16 @@ http {
           proxy_set_header X-Forwarded-For proxy_add_x_forwarded_for;
           proxy_set_header X-Forwarded-Proto scheme;
         }
+
+    # [ DOCUMENTATION - Redocly ]
+        location /documentation/redocly {
+          proxy_pass http://$PRIVATE_DOMAIN:$DOCUMENTATION_PORT;
+          proxy_set_header Host host;
+          proxy_set_header X-Real-IP remot1e_addr;
+          proxy_set_header X-Forwarded-For proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto scheme;
+        }
+
     # ================================================================= (end documentation)
 
     # HELLO WORLD
