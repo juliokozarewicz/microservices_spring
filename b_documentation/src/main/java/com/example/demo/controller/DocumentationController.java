@@ -53,4 +53,35 @@ class DocumentationController {
             "</body>\n" +
             "</html>";
     }
+
+    @GetMapping("/documentation/redocly")
+    public String getRedocUi() {
+        return "<html>\n" +
+            "<head>\n" +
+            "<title>Redoc UI</title>\n" +
+            "<script src='https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js'></script>\n" +
+            "<style>\n" +
+            "  #redoc-container {\n" +
+            "    max-width: 100%;\n" +
+            "    margin: 0 auto;\n" +
+            "  }\n" +
+            "</style>\n" +
+            "</head>\n" +
+            "<body>\n" +
+            "<div id='redoc-container'></div>\n" +
+            "<script>\n" +
+            "  Redoc.init('/documentation/json', {\n" +
+            "    theme: {\n" +
+            "      typography: {\n" +
+            "        fontSize: '12px', \n" +
+            "        codeFontSize: '7px' \n" +
+            "      }\n" +
+            "    }\n" +
+            "  }, document.getElementById('redoc-container'));\n" +
+            "</script>\n" +
+            "</body>\n" +
+            "</html>";
+    }
+
+
 }
